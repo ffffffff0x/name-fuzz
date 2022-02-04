@@ -67,6 +67,7 @@ python3 name-fuzz.py
 - https://github.com/mozillazg/python-pinyin
 - https://github.com/soxoj/username-generation-guide
 - https://github.com/WangYihang/ccupp
+- https://gist.github.com/yuikns/387be5e9cf450ae3589fa7037c94453e
 
 ---
 
