@@ -593,10 +593,18 @@ def results_list_A():
             temp_str6 = "".join(tempvar)
             SystemName_str2 = SystemName_str2 + temp_str6
 
+        SystemName_str3 = SystemName_str2[0].upper()+SystemName_str2[1:]
+
+        SystemName_str4 = SystemName_str2.upper()
+
         # zhihuijiaotong
         print("SystemName_str1       : ",SystemName_str1)
         # zhjt
         print("SystemName_str2       : ",SystemName_str2)
+        # Zhjt
+        print("SystemName_str3       : ",SystemName_str3)
+        # ZHJT
+        print("SystemName_str4       : ",SystemName_str4)
 
         # zhjt + 后缀
         f1 = open(filename, "r")
@@ -604,9 +612,23 @@ def results_list_A():
             results_list_A.append(SystemName_str2+line.replace('\n', '').replace('\r', ''))
         f1.close()
 
+        # Zhjt + 后缀
+        f1 = open(filename, "r")
+        for line in f1:
+            results_list_A.append(SystemName_str3+line.replace('\n', '').replace('\r', ''))
+        f1.close()
+
+        # ZHJT + 后缀
+        f1 = open(filename, "r")
+        for line in f1:
+            results_list_A.append(SystemName_str4+line.replace('\n', '').replace('\r', ''))
+        f1.close()
+
         f = open("output0.txt", "a")
         f.write(SystemName_str1+"\n")
         f.write(SystemName_str2+"\n")
+        f.write(SystemName_str3+"\n")
+        f.write(SystemName_str4+"\n")
         f.close()
 
     # 输出至 output1.txt
