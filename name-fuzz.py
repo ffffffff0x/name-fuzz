@@ -9,10 +9,10 @@ filename="suffix.txt"
 
 # 检验名称输入是否全是中文字符
 def is_all_chinese(strs):
-	for _char in strs:
-		if not '\u4e00' <= _char <= '\u9fa5':
-			return False
-	return True
+    for _char in strs:
+        if not '\u4e00' <= _char <= '\u9fa5':
+            return False
+    return True
 
 # 拼音分词
 class PyTrieNode(object):
@@ -493,16 +493,26 @@ def results_list_A():
             temp_str2 = "".join(tempvar)
             CompanyName_str2 = CompanyName_str2 + temp_str2
 
+        CompanyName_str3 = CompanyName_str2[0].upper()+CompanyName_str2[1:]
+
         # jiangsuxxyouxiangongsi
         print("CompanyName_str1      : ",CompanyName_str1)
         # jsxxyxgs
         print("CompanyName_str2      : ",CompanyName_str2)
+        # Jsxxyxgs
+        print("CompanyName_str3      : ",CompanyName_str3)
 
         # jsxxyxgs + 后缀
         f1 = open(filename, "r")
         for line in f1:
             results_list_A.append(CompanyName_str2+line.replace('\n', '').replace('\r', ''))
         f1.close()
+
+        f = open("output0.txt", "w")
+        f.write(CompanyName_str1+"\n")
+        f.write(CompanyName_str2+"\n")
+        f.write(CompanyName_str3+"\n")
+        f.close()
 
     # 例如: 江苏XX
     if ShortCompanyName:
@@ -519,10 +529,22 @@ def results_list_A():
             temp_str4 = "".join(tempvar)
             ShortCompanyName_str2 = ShortCompanyName_str2 + temp_str4
 
+        ShortCompanyName_str3 = ShortCompanyName_str1[0].upper()+ShortCompanyName_str1[1:]
+
+        ShortCompanyName_str4 = ShortCompanyName_str2[0].upper()+ShortCompanyName_str2[1:]
+
+        ShortCompanyName_str5 = ShortCompanyName_str2.upper()
+
         # jiangsuxx
         print("ShortCompanyName_str1 : ",ShortCompanyName_str1)
         # jsxx
         print("ShortCompanyName_str2 : ",ShortCompanyName_str2)
+        # Jiangsuxx
+        print("ShortCompanyName_str3 : ",ShortCompanyName_str3)
+        # Jsxx
+        print("ShortCompanyName_str4 : ",ShortCompanyName_str4)
+        # JSXX
+        print("ShortCompanyName_str5 : ",ShortCompanyName_str5)
 
         # jiangsuxx + 后缀
         f1 = open(filename, "r")
@@ -535,6 +557,26 @@ def results_list_A():
         for line in f1:
             results_list_A.append(ShortCompanyName_str2+line.replace('\n', '').replace('\r', ''))
         f1.close()
+
+        # Jsxx + 后缀
+        f1 = open(filename, "r")
+        for line in f1:
+            results_list_A.append(ShortCompanyName_str4+line.replace('\n', '').replace('\r', ''))
+        f1.close()
+
+        # JSXX + 后缀
+        f1 = open(filename, "r")
+        for line in f1:
+            results_list_A.append(ShortCompanyName_str5+line.replace('\n', '').replace('\r', ''))
+        f1.close()
+
+        f = open("output0.txt", "a")
+        f.write(ShortCompanyName_str1+"\n")
+        f.write(ShortCompanyName_str2+"\n")
+        f.write(ShortCompanyName_str3+"\n")
+        f.write(ShortCompanyName_str4+"\n")
+        f.write(ShortCompanyName_str5+"\n")
+        f.close()
 
     # 例如: 智慧交通
     if SystemName:
@@ -562,12 +604,18 @@ def results_list_A():
             results_list_A.append(SystemName_str2+line.replace('\n', '').replace('\r', ''))
         f1.close()
 
+        f = open("output0.txt", "a")
+        f.write(SystemName_str1+"\n")
+        f.write(SystemName_str2+"\n")
+        f.close()
+
     # 输出至 output1.txt
     if len(results_list_A) > 1:
         f = open("output1.txt", "w")
         for x in results_list_A:
             f.write(x+"\n")
         f.close()
+        print("基于组织的简写内容已生成至 output0.txt")
         print("基于组织的字典内容已生成至 output1.txt")
         print("\n")
 
@@ -618,89 +666,89 @@ def results_list_B():
 # 生成相应规则(基于人员拼音)
 def results_list_C():
 
-	results_list_C = []
+    results_list_C = []
 
-	if PersonName:
-		pyt = PyTrie()
-		pyt.setup()
-		PersonName_array3 = pyt.scan(PersonName)
-		PersonName_str4=""
-		PersonName_str5=""
-		PersonName_str6=""
+    if PersonName:
+        pyt = PyTrie()
+        pyt.setup()
+        PersonName_array3 = pyt.scan(PersonName)
+        PersonName_str4=""
+        PersonName_str5=""
+        PersonName_str6=""
 
-		for tempvar in PersonName_array3:
-			temp_str1 = "".join(tempvar)
-			PersonName_str4 = PersonName_str4 + temp_str1
+        for tempvar in PersonName_array3:
+            temp_str1 = "".join(tempvar)
+            PersonName_str4 = PersonName_str4 + temp_str1
 
-		for tempvar in PersonName_array3:
-			temp_str2 = "".join(tempvar)[0]
-			PersonName_str5 = PersonName_str5 + temp_str2
+        for tempvar in PersonName_array3:
+            temp_str2 = "".join(tempvar)[0]
+            PersonName_str5 = PersonName_str5 + temp_str2
 
-		PersonName_str6 = "".join(PersonName_array3[0])
-		for tempvar in PersonName_array3[1:]:
-			temp_str3 = "".join(tempvar)[0]
-			PersonName_str6 = PersonName_str6 + temp_str3
+        PersonName_str6 = "".join(PersonName_array3[0])
+        for tempvar in PersonName_array3[1:]:
+            temp_str3 = "".join(tempvar)[0]
+            PersonName_str6 = PersonName_str6 + temp_str3
 
-		results_list_C.append(PersonName_str4)
-		results_list_C.append(PersonName_str5)
-		results_list_C.append(PersonName_str6)
+        results_list_C.append(PersonName_str4)
+        results_list_C.append(PersonName_str5)
+        results_list_C.append(PersonName_str6)
 
-		# zhangsan
-		print("PersonName_str4       : ",PersonName_str4)
-		# zs
-		print("PersonName_str5       : ",PersonName_str5)
-		# zhangs
-		print("PersonName_str6       : ",PersonName_str6)
+        # zhangsan
+        print("PersonName_str4       : ",PersonName_str4)
+        # zs
+        print("PersonName_str5       : ",PersonName_str5)
+        # zhangs
+        print("PersonName_str6       : ",PersonName_str6)
 
     # 输出至 output2.txt
-	if len(results_list_C) > 1:
-		f = open("output2.txt", "w")
-		for x in results_list_C:
-			f.write(x+"\n")
-		f.close()
-		print("基于组织的字典内容已生成至 output2.txt")
-		print("\n")
+    if len(results_list_C) > 1:
+        f = open("output2.txt", "w")
+        for x in results_list_C:
+            f.write(x+"\n")
+        f.close()
+        print("基于组织的字典内容已生成至 output2.txt")
+        print("\n")
 
 # 生成相应规则(基于地点)
 def results_list_D():
 
     results_list_D = []
 
-    print("省份名称: " + ProvinceName)
-    print("城市名称: " + CityName)
-    print("区县名称: " + DistrictName)
+    # print("省份名称: " + ProvinceName)
+    # print("城市名称: " + CityName)
+    # print("区县名称: " + DistrictName)
 
 def main():
 
-	global CompanyName
-	global ShortCompanyName
-	global SystemName
-	global StreetName
-	global PersonName
-	global PersonPhoneNumber
-	global PersonEmail
-	#global ProvinceName
-	#global CityName
-	#global DistrictName
+    global CompanyName
+    global ShortCompanyName
+    global SystemName
+    global StreetName
+    global PersonName
+    global PersonPhoneNumber
+    global PersonEmail
+    #global ProvinceName
+    #global CityName
+    #global DistrictName
 
-	CompanyName = input("公司/单位/组织全称  (例如: 江苏XX有限公司):").lower()
-	ShortCompanyName = input("公司/单位/组织简称  (例如: XX公司):").lower()
-	SystemName = input("系统/业务简称       (例如: 智慧交通):").lower()
-	PersonName = input("人员名称            (例如: 申田由甲):").lower()
+    CompanyName = input("公司/单位/组织全称  (例如: 江苏XX有限公司):").lower()
+    ShortCompanyName = input("公司/单位/组织简称  (例如: 江苏XX):").lower()
+    SystemName = input("系统/业务简称       (例如: 智慧交通):").lower()
+    PersonName = input("人员名称            (例如: 申田由甲):").lower()
 
-	#PhoneNumber = input("电话号码(例如:13333333333 可为空): ").lower()
-	#Email = input("电子邮箱(例如:test@163.com 可为空): ").lower()
-	#ProvinceName = input("省份名称(例如:江苏 ,可为空): ").lower()
-	#CityName = input("城市名称(例如:南京 ,可为空): ").lower()
-	#DistrictName = input("区县名称(例如:江宁 ,可为空): ").lower()
+    #PhoneNumber = input("电话号码(例如:13333333333 可为空): ").lower()
+    #Email = input("电子邮箱(例如:test@163.com 可为空): ").lower()
+    #ProvinceName = input("省份名称(例如:江苏 ,可为空): ").lower()
+    #CityName = input("城市名称(例如:南京 ,可为空): ").lower()
+    #DistrictName = input("区县名称(例如:江宁 ,可为空): ").lower()
 
-	print("\n")
-	results_list_A()
+    print("\n")
+    results_list_A()
 
-	if is_all_chinese(PersonName):
-		results_list_B()
-	else:
-		results_list_C()
+    if is_all_chinese(PersonName):
+        results_list_B()
+    else:
+        results_list_C()
 
 if __name__ == '__main__':
     main()
