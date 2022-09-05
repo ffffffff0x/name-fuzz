@@ -56,10 +56,14 @@ python3 name-fuzz.py
 ### 基于人员
 
 `人员名称`
-- zhangsan(张三)
-- zs
-- zhangs
-- zsan
+- zhangsanfeng (拼音)
+- zsf (缩写)
+- zhangsf (首字拼音+缩写)
+- zsfeng (缩写+尾字拼音)
+- sanfengzhang (拼音+首字拼音)
+- sanfengz (拼音+首字缩写)
+- sfz (缩写+首字缩写)
+- 张三丰 (中文)
 
 ---
 
@@ -69,6 +73,7 @@ python3 name-fuzz.py
 - https://github.com/soxoj/username-generation-guide
 - https://github.com/WangYihang/ccupp
 - https://gist.github.com/yuikns/387be5e9cf450ae3589fa7037c94453e
+- https://www.yuque.com/pmiaowu/bomi9w/ougg6d#d70159da
 
 ---
 
