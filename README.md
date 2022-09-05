@@ -59,6 +59,7 @@ python3 name-fuzz.py
 - zhangsan(张三)
 - zs
 - zhangs
+- zsan
 
 ---
 
