@@ -476,6 +476,7 @@ class PyTrie(object):
 # 生成相应规则(基于组织)
 def results_list_A():
 
+    results_list_0 = []
     results_list_A = []
 
     # 例如: 江苏XX有限公司
@@ -495,6 +496,10 @@ def results_list_A():
 
         CompanyName_str3 = CompanyName_str2[0].upper()+CompanyName_str2[1:]
 
+        results_list_0.append(CompanyName_str1)
+        results_list_0.append(CompanyName_str2)
+        results_list_0.append(CompanyName_str3)
+
         # jiangsuxxyouxiangongsi
         print("CompanyName_str1      : ",CompanyName_str1)
         # jsxxyxgs
@@ -507,12 +512,6 @@ def results_list_A():
         for line in f1:
             results_list_A.append(CompanyName_str2+line.replace('\n', '').replace('\r', ''))
         f1.close()
-
-        f = open("output0.txt", "w")
-        f.write(CompanyName_str1+"\n")
-        f.write(CompanyName_str2+"\n")
-        f.write(CompanyName_str3+"\n")
-        f.close()
 
     # 例如: 江苏XX
     if ShortCompanyName:
@@ -534,6 +533,12 @@ def results_list_A():
         ShortCompanyName_str4 = ShortCompanyName_str2[0].upper()+ShortCompanyName_str2[1:]
 
         ShortCompanyName_str5 = ShortCompanyName_str2.upper()
+
+        results_list_0.append(ShortCompanyName_str1)
+        results_list_0.append(ShortCompanyName_str2)
+        results_list_0.append(ShortCompanyName_str3)
+        results_list_0.append(ShortCompanyName_str4)
+        results_list_0.append(ShortCompanyName_str5)
 
         # jiangsuxx
         print("ShortCompanyName_str1 : ",ShortCompanyName_str1)
@@ -570,14 +575,6 @@ def results_list_A():
             results_list_A.append(ShortCompanyName_str5+line.replace('\n', '').replace('\r', ''))
         f1.close()
 
-        f = open("output0.txt", "a")
-        f.write(ShortCompanyName_str1+"\n")
-        f.write(ShortCompanyName_str2+"\n")
-        f.write(ShortCompanyName_str3+"\n")
-        f.write(ShortCompanyName_str4+"\n")
-        f.write(ShortCompanyName_str5+"\n")
-        f.close()
-
     # 例如: 智慧交通
     if SystemName:
         SystemName_array1=pinyin(SystemName, style=Style.NORMAL, strict=False)
@@ -596,6 +593,11 @@ def results_list_A():
         SystemName_str3 = SystemName_str2[0].upper()+SystemName_str2[1:]
 
         SystemName_str4 = SystemName_str2.upper()
+
+        results_list_0.append(SystemName_str1)
+        results_list_0.append(SystemName_str2)
+        results_list_0.append(SystemName_str3)
+        results_list_0.append(SystemName_str4)
 
         # zhihuijiaotong
         print("SystemName_str1       : ",SystemName_str1)
@@ -624,12 +626,13 @@ def results_list_A():
             results_list_A.append(SystemName_str4+line.replace('\n', '').replace('\r', ''))
         f1.close()
 
-        f = open("output0.txt", "a")
-        f.write(SystemName_str1+"\n")
-        f.write(SystemName_str2+"\n")
-        f.write(SystemName_str3+"\n")
-        f.write(SystemName_str4+"\n")
+    # 输出至 output0.txt
+    if len(results_list_0) > 1:
+        f = open("output0.txt", "w")
+        for x in results_list_0:
+            f.write(x+"\n")
         f.close()
+        print("基于组织的简写内容已生成至 output0.txt")
 
     # 输出至 output1.txt
     if len(results_list_A) > 1:
@@ -637,7 +640,6 @@ def results_list_A():
         for x in results_list_A:
             f.write(x+"\n")
         f.close()
-        print("基于组织的简写内容已生成至 output0.txt")
         print("基于组织的字典内容已生成至 output1.txt")
         print("\n")
 
@@ -645,45 +647,76 @@ def results_list_A():
 def results_list_B():
 
     results_list_B = []
+    results_list_B2 = []
 
     if PersonName:
         PersonName_array1=pinyin(PersonName, style=Style.NORMAL, strict=False)
         PersonName_array2=pinyin(PersonName, style=Style.FIRST_LETTER, strict=False)
-        PersonName_str1 = ""
-        PersonName_str2 = ""
-        PersonName_str7 = ""
+        PersonName_B1 = ""
+        PersonName_B2 = ""
+        PersonName_B4 = ""
+        PersonName_B5 = ""
+        PersonName_B6 = ""
+        PersonName_B7 = ""
 
         for tempvar in PersonName_array1:
             temp_str1 = "".join(tempvar)
-            PersonName_str1 = PersonName_str1 + temp_str1
+            PersonName_B1 = PersonName_B1 + temp_str1
 
         for tempvar in PersonName_array2:
             temp_str2 = "".join(tempvar)
-            PersonName_str2 = PersonName_str2 + temp_str2
+            PersonName_B2 = PersonName_B2 + temp_str2
 
-        PersonName_str3 = "".join(PersonName_array1[0])
+        PersonName_B3 = "".join(PersonName_array1[0])
         for tempvar in PersonName_array2[1:]:
             temp_str2 = "".join(tempvar)
-            PersonName_str3 = PersonName_str3 + temp_str2
+            PersonName_B3 = PersonName_B3 + temp_str2
 
         for tempvar in PersonName_array2[0:-1]:
             temp_str2 = "".join(tempvar)
-            PersonName_str7 = PersonName_str7 + temp_str2
-        PersonName_str7 += "".join(PersonName_array1[-1])
+            PersonName_B4 = PersonName_B4 + temp_str2
+        PersonName_B4 += "".join(PersonName_array1[-1])
 
-        results_list_B.append(PersonName_str1)
-        results_list_B.append(PersonName_str2)
-        results_list_B.append(PersonName_str3)
-        results_list_B.append(PersonName_str7)
+        for tempvar in PersonName_array1[1:]:
+            temp_str2 = "".join(tempvar)
+            PersonName_B5 = PersonName_B5 + temp_str2
+        PersonName_B5 += "".join(PersonName_array1[0])
 
-        # zhangsan
-        print("PersonName_str1       : ",PersonName_str1)
-        # zs
-        print("PersonName_str2       : ",PersonName_str2)
-        # zhangs
-        print("PersonName_str3       : ",PersonName_str3)
-        # zsan
-        print("PersonName_str7       : ",PersonName_str7)
+        for tempvar in PersonName_array1[1:]:
+            temp_str2 = "".join(tempvar)
+            PersonName_B6 = PersonName_B6 + temp_str2
+        PersonName_B6 += "".join(PersonName_array2[0])
+
+        for tempvar in PersonName_array2[1:]:
+            temp_str2 = "".join(tempvar)
+            PersonName_B7 = PersonName_B7 + temp_str2
+        PersonName_B7 += "".join(PersonName_array2[0])
+
+        results_list_B.append(PersonName_B1)
+        results_list_B.append(PersonName_B2)
+        results_list_B.append(PersonName_B3)
+        results_list_B.append(PersonName_B4)
+        results_list_B.append(PersonName_B5)
+        results_list_B.append(PersonName_B6)
+        results_list_B.append(PersonName_B7)
+        results_list_B.append(PersonName)
+
+        # zhangsanfeng
+        print("PersonName_B1       : ",PersonName_B1)
+        # zsf
+        print("PersonName_B2       : ",PersonName_B2)
+        # zhangsf
+        print("PersonName_B3       : ",PersonName_B3)
+        # zsfeng
+        print("PersonName_B4       : ",PersonName_B4)
+        # sanfengzhang
+        print("PersonName_B5       : ",PersonName_B5)
+        # sanfengz
+        print("PersonName_B6       : ",PersonName_B6)
+        # sfz
+        print("PersonName_B7       : ",PersonName_B7)
+        # 张三丰
+        print("PersonName_B8       : ",PersonName)
 
     # 输出至 output2.txt
     if len(results_list_B) > 1:
@@ -691,53 +724,98 @@ def results_list_B():
         for x in results_list_B:
             f.write(x+"\n")
         f.close()
-        print("基于人员的字典内容已生成至 output2.txt")
+        print("基于人员的字典规则已生成至 output2.txt")
+
+        f1 = open("output2.txt", "r")
+        for line1 in f1:
+            f2 = open(filename, "r")
+            for line2 in f2:
+                results_list_B2.append(line1.replace('\n', '').replace('\r', '') + line2.replace('\n', '').replace('\r', ''))
+                #print(line1.replace('\n', '').replace('\r', '') + line2.replace('\n', '').replace('\r', ''))
+            f2.close()
+        f1.close()
+
+    # 输出至 output3.txt
+    if len(results_list_B2) > 1:
+        f = open("output3.txt", "w")
+        for x in results_list_B2:
+            f.write(x+"\n")
+        f.close()
+        print("基于用户的字典内容已生成至 output3.txt")
         print("\n")
 
 # 生成相应规则(基于人员拼音)
 def results_list_C():
 
     results_list_C = []
+    results_list_C2 = []
 
     if PersonName:
         pyt = PyTrie()
         pyt.setup()
         PersonName_array3 = pyt.scan(PersonName)
-        PersonName_str4 = ""
-        PersonName_str5 = ""
-        PersonName_str8 = ""
+        PersonName_C1 = ""
+        PersonName_C2 = ""
+        PersonName_C4 = ""
+        PersonName_C5 = ""
+        PersonName_C6 = ""
+        PersonName_C7 = ""
 
         for tempvar in PersonName_array3:
             temp_str1 = "".join(tempvar)
-            PersonName_str4 = PersonName_str4 + temp_str1
+            PersonName_C1 = PersonName_C1 + temp_str1
 
         for tempvar in PersonName_array3:
             temp_str2 = "".join(tempvar)[0]
-            PersonName_str5 = PersonName_str5 + temp_str2
+            PersonName_C2 = PersonName_C2 + temp_str2
 
-        PersonName_str6 = "".join(PersonName_array3[0])
+        PersonName_C3 = "".join(PersonName_array3[0])
         for tempvar in PersonName_array3[1:]:
             temp_str3 = "".join(tempvar)[0]
-            PersonName_str6 = PersonName_str6 + temp_str3
+            PersonName_C3 = PersonName_C3 + temp_str3
 
         for tempvar in PersonName_array3[0:-1]:
             temp_str3 = "".join(tempvar)[0]
-            PersonName_str8 = PersonName_str8 + temp_str3
-        PersonName_str8 += "".join(PersonName_array3[-1])
+            PersonName_C4 = PersonName_C4 + temp_str3
+        PersonName_C4 += "".join(PersonName_array3[-1])
 
-        results_list_C.append(PersonName_str4)
-        results_list_C.append(PersonName_str5)
-        results_list_C.append(PersonName_str6)
-        results_list_C.append(PersonName_str8)
+        for tempvar in PersonName_array3[1:]:
+            temp_str2 = "".join(tempvar)
+            PersonName_C5 = PersonName_C5 + temp_str2
+        PersonName_C5 += "".join(PersonName_array3[0])
 
-        # zhangsan
-        print("PersonName_str4       : ",PersonName_str4)
-        # zs
-        print("PersonName_str5       : ",PersonName_str5)
-        # zhangs
-        print("PersonName_str6       : ",PersonName_str6)
-        # zsan
-        print("PersonName_str8       : ",PersonName_str8)
+        for tempvar in PersonName_array3[1:]:
+            temp_str2 = "".join(tempvar)
+            PersonName_C6 = PersonName_C6 + temp_str2
+        PersonName_C6 += "".join(PersonName_array3[0][0])
+
+        for tempvar in PersonName_array3[1:]:
+            temp_str2 = "".join(tempvar)[0]
+            PersonName_C7 = PersonName_C7 + temp_str2
+        PersonName_C7 += "".join(PersonName_array3[0][0])
+
+        results_list_C.append(PersonName_C1)
+        results_list_C.append(PersonName_C2)
+        results_list_C.append(PersonName_C3)
+        results_list_C.append(PersonName_C4)
+        results_list_C.append(PersonName_C5)
+        results_list_C.append(PersonName_C6)
+        results_list_C.append(PersonName_C7)
+
+        # zhangsanfeng
+        print("PersonName_C1       : ",PersonName_C1)
+        # zsf
+        print("PersonName_C2       : ",PersonName_C2)
+        # zhangsf
+        print("PersonName_C3       : ",PersonName_C3)
+        # zsfeng
+        print("PersonName_C4       : ",PersonName_C4)
+        # sanfengzhang
+        print("PersonName_C5       : ",PersonName_C5)
+        # sanfengz
+        print("PersonName_C6       : ",PersonName_C6)
+        # sfz
+        print("PersonName_C7       : ",PersonName_C7)
 
     # 输出至 output2.txt
     if len(results_list_C) > 1:
@@ -746,6 +824,23 @@ def results_list_C():
             f.write(x+"\n")
         f.close()
         print("基于人员的字典内容已生成至 output2.txt")
+
+        f1 = open("output2.txt", "r")
+        for line1 in f1:
+            f2 = open(filename, "r")
+            for line2 in f2:
+                results_list_C2.append(line1.replace('\n', '').replace('\r', '') + line2.replace('\n', '').replace('\r', ''))
+                #print(line1.replace('\n', '').replace('\r', '') + line2.replace('\n', '').replace('\r', ''))
+            f2.close()
+        f1.close()
+
+    # 输出至 output3.txt
+    if len(results_list_C2) > 1:
+        f = open("output3.txt", "w")
+        for x in results_list_C2:
+            f.write(x+"\n")
+        f.close()
+        print("基于用户的字典内容已生成至 output3.txt")
         print("\n")
 
 # 生成相应规则(基于地点)
