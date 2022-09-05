@@ -651,6 +651,7 @@ def results_list_B():
         PersonName_array2=pinyin(PersonName, style=Style.FIRST_LETTER, strict=False)
         PersonName_str1 = ""
         PersonName_str2 = ""
+        PersonName_str7 = ""
 
         for tempvar in PersonName_array1:
             temp_str1 = "".join(tempvar)
@@ -665,9 +666,15 @@ def results_list_B():
             temp_str2 = "".join(tempvar)
             PersonName_str3 = PersonName_str3 + temp_str2
 
+        for tempvar in PersonName_array2[0:-1]:
+            temp_str2 = "".join(tempvar)
+            PersonName_str7 = PersonName_str7 + temp_str2
+        PersonName_str7 += "".join(PersonName_array1[-1])
+
         results_list_B.append(PersonName_str1)
         results_list_B.append(PersonName_str2)
         results_list_B.append(PersonName_str3)
+        results_list_B.append(PersonName_str7)
 
         # zhangsan
         print("PersonName_str1       : ",PersonName_str1)
@@ -675,6 +682,8 @@ def results_list_B():
         print("PersonName_str2       : ",PersonName_str2)
         # zhangs
         print("PersonName_str3       : ",PersonName_str3)
+        # zsan
+        print("PersonName_str7       : ",PersonName_str7)
 
     # 输出至 output2.txt
     if len(results_list_B) > 1:
@@ -682,7 +691,7 @@ def results_list_B():
         for x in results_list_B:
             f.write(x+"\n")
         f.close()
-        print("基于组织的字典内容已生成至 output2.txt")
+        print("基于人员的字典内容已生成至 output2.txt")
         print("\n")
 
 # 生成相应规则(基于人员拼音)
@@ -694,9 +703,9 @@ def results_list_C():
         pyt = PyTrie()
         pyt.setup()
         PersonName_array3 = pyt.scan(PersonName)
-        PersonName_str4=""
-        PersonName_str5=""
-        PersonName_str6=""
+        PersonName_str4 = ""
+        PersonName_str5 = ""
+        PersonName_str8 = ""
 
         for tempvar in PersonName_array3:
             temp_str1 = "".join(tempvar)
@@ -711,9 +720,15 @@ def results_list_C():
             temp_str3 = "".join(tempvar)[0]
             PersonName_str6 = PersonName_str6 + temp_str3
 
+        for tempvar in PersonName_array3[0:-1]:
+            temp_str3 = "".join(tempvar)[0]
+            PersonName_str8 = PersonName_str8 + temp_str3
+        PersonName_str8 += "".join(PersonName_array3[-1])
+
         results_list_C.append(PersonName_str4)
         results_list_C.append(PersonName_str5)
         results_list_C.append(PersonName_str6)
+        results_list_C.append(PersonName_str8)
 
         # zhangsan
         print("PersonName_str4       : ",PersonName_str4)
@@ -721,6 +736,8 @@ def results_list_C():
         print("PersonName_str5       : ",PersonName_str5)
         # zhangs
         print("PersonName_str6       : ",PersonName_str6)
+        # zsan
+        print("PersonName_str8       : ",PersonName_str8)
 
     # 输出至 output2.txt
     if len(results_list_C) > 1:
@@ -728,7 +745,7 @@ def results_list_C():
         for x in results_list_C:
             f.write(x+"\n")
         f.close()
-        print("基于组织的字典内容已生成至 output2.txt")
+        print("基于人员的字典内容已生成至 output2.txt")
         print("\n")
 
 # 生成相应规则(基于地点)
